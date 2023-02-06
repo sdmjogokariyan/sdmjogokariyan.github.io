@@ -1,2 +1,0 @@
-# dasbor
-dasbor GTK
