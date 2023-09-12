@@ -1,8 +1,44 @@
 <html>
-<body>
-	<form>
-		<input type="text">
-		<submit>a</submit>
-	</form>
-</body>
+    <head>
+        <title>e-Formulir PPDB v0</title>        
+        <script>
+            function cekIsianAtom (){                
+                if (this.value.trim()!=""){
+                    if (document.getElementById("nama_"+Number((Number(this.id.split("_")[1]) + 1))))
+                        document.getElementById("nama_"+Number((Number(this.id.split("_")[1]) + 1))).focus();
+                }
+            }
+            function mulai (){
+                for (var i=1; i<=20; i++){
+                    var in_nama = document.createElement('input');
+                        in_nama.id = 'nama_'+i;
+                        in_nama.style.fontSize = "20";
+                        in_nama.style.fontFamily = "Courier New";
+                        in_nama.style.textTransform = "uppercase";
+                        in_nama.setAttribute('type', "text");
+                        in_nama.setAttribute('autofocus', true);
+                        in_nama.setAttribute('form', 'formulir');
+                        in_nama.setAttribute('maxlength', '1');
+                        in_nama.setAttribute('size', '1');
+                        in_nama.addEventListener("keyup", cekIsianAtom);
+                    document.getElementById("formulir").appendChild(in_nama);
+                }    
+
+                var in_submit = document.createElement("button");
+                    in_submit.id = "cetakin";
+                    in_submit.setAttribute("type", "submit");
+                    in_submit.innerText = "PDF";
+                    in_submit.onclick = function(){
+                        window.print();
+                    }
+                document.getElementById("formulir").appendChild(in_submit);
+            }
+        </script>
+    </head>
+    <body onload="mulai()">
+        <h1>Formulir PPDB v0</h1>
+        <div id="formulir">
+            Nama lengkap :
+        </div>
+    </body>
 </html>
